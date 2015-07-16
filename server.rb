@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/flash'
-require 'pry'
+#require 'pry'
 require './lib/dice.rb'
 require './lib/die.rb'
 
