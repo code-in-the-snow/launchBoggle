@@ -10,7 +10,7 @@ $("#timer").on("click", (function (e) {
       intervalStop()
       $this.removeClass("active");
     } else {
-      $this.addClass("activ e");
+      $this.addClass("active");
       intervalGo = setInterval(function () {
         spin($this,i++);
       }, 250);
