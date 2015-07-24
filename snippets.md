@@ -22,19 +22,11 @@ function checkTime(i) {
 
 ###############################
 
-intervalClock = setInterval(function () {
-  clock(time++);
-}, 1000);
-
-function checkTime(i) {
-    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-
-clock = function startClock(time) {
-  var mins = Math.floor(time % 60);
-  var secs = Math.floor(time / 60);
-  mins = checkTime(mins);
-  secs = checkTime(secs);
-  document.getElementById('time-display').HTML = m + ":" + s;
-};
+var seconds = 61;
+        function tick() {
+            var counter = document.getElementById("countdown");
+            seconds--;
+            counter.innerHTML = (seconds < 10 ? "0" : "") + String(seconds);
+            if( seconds > 0 ) {
+                setTimeout(tick, 1000);
+            } else {
