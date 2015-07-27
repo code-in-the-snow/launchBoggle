@@ -6,19 +6,19 @@ var x = 0,
 
 $("#timer").on("click", (function (e) {
     e.preventDefault();
-
-    intervalCount = setInterval(function () {
-      countDown(x++);
-    }, 1000);
-
     var $this = $(this);
     var inMotion = $this.hasClass("active")
 
     if (inMotion == true) {
       intervalStop();
-      countStop();
+      clearInterval(intervalCount);
+      // countStop();
       $this.removeClass("active");
     } else {
+
+      intervalCount = setInterval(function () {
+        countDown(x++);
+      }, 1000);
       $this.addClass("active");
       intervalGo = setInterval(function () {
         spin($this,i++);
@@ -26,7 +26,7 @@ $("#timer").on("click", (function (e) {
     }
  }));
 
-spin = function spinTimer(image, i) {
+spin = function(image, i) {
   image.css({
     '-webkit-transform':'rotate(' + i*30 + 'deg)',
     '-moz-transform':'rotate(' + i*30 + 'deg)',
@@ -37,23 +37,23 @@ spin = function spinTimer(image, i) {
 };
 
 countDown = function counter(x) {
-    var total = 60 - x
+    var total = 179 - x
     var mins = Math.floor(total / 60)
     mins = checkTime(mins)
     var secs = Math.floor(total % 60)
     secs = checkTime(secs)
-    document.getElementById("counter").innerHTML = mins+":"+secs
+    if (x < 180) {
+      document.getElementById("counter").innerHTML = mins+":"+secs;
+    } else {
+      document.getElementById("counter").innerHTML = "00:00";
+    }
 };
 
 function checkTime(i) {
-    if (i<10) {i = "0" + i};
+    if (i<10) { i = "0" + i };
     return i;
 }
 
 function intervalStop() {
   clearInterval(intervalGo);
-}
-
-function countStop() {
-  clearInterval(intervalCount);
 }

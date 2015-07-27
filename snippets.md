@@ -1,32 +1,27 @@
 function startTime() {
-    var today=new Date();
-    var h=today.getHours();
-    var m=today.getMinutes();
-    var s=today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML = h+":"+m+":"+s;
-    var t = setTimeout(function(){startTime()},500);
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  //add zero in front of numbers < 10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById("txt").innerHTML =
+  t = setTimeout(function() { startTime() }; 500);
 }
-
-function checkTime(i) {
-    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-</script>
-</head>
-
-<body onload="startTime()">
-
-<div id="txt"></div>
 
 ###############################
 
-var seconds = 61;
-        function tick() {
-            var counter = document.getElementById("countdown");
-            seconds--;
-            counter.innerHTML = (seconds < 10 ? "0" : "") + String(seconds);
-            if( seconds > 0 ) {
-                setTimeout(tick, 1000);
-            } else {
+countDown = function counter(x) {
+    var total = 179 - x
+    var mins = Math.floor(total / 60)
+    mins = checkTime(mins)
+    var secs = Math.floor(total % 60)
+    secs = checkTime(secs)
+    document.getElementById("counter").innerHTML = mins+":"+secs
+};
+
+
+intervalCount = setInterval(function () {
+  countDown(x++);
+}, 1000);
